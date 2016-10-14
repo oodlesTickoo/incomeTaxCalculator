@@ -104,6 +104,29 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
 
     document.getElementById("download").addEventListener("click",function(){
         PdfMaker.createChart(Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')),$scope.result);
-    })
+    });
+
+    // document.getElementById("print-doc").addEventListener("click",function(){
+    //     console.log("here");
+    //     if(!$scope.chartOneOpen){
+    //         // $scope.chartOneOpen  = true;
+    //         // console.log($scope.chartOneOpen);
+    //         document.getElementById("container").style.display = "block";
+    //         // $timeout(0);
+    //        // window.print();
+    //        // setTimeout(function(){
+    //         // document.getElementById("container").style.display = "none";
+    //      // },2000);
+    //     }else{
+    //         $scope.chartOneOpen  = false;
+    //         console.log($scope.chartOneOpen);
+    //         $timeout(0);
+    //       // document.getElementById("donutContainer").style.display = "block";  
+    //       // window.print();
+    //       // setTimeout(function(){
+    //       //   document.getElementById("donutContainer").style.display = "none";
+    //       // },2000);
+    //     }            
+    // });
 
 }]);
