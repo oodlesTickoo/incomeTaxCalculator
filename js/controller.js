@@ -71,6 +71,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
     annualSalarySlider.noUiSlider.on('set', function(values, handle) {
         // console.log("here");
         calculateFinal();
+        $timeout(0);
     });
     
     // annualSalarySlider.noUiSlider.on('set', function(values, handle) {
