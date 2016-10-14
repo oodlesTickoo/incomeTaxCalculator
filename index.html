@@ -24,7 +24,7 @@
                 <h1>Income Tax Calculator</h1>
             </div>
             <div print-hide class=" button-wrapper col-xs-4 col-sm-3 col-md-3">
-                <button type="button" class="buttons button print-icon" onclick="window.print()"></button>
+                <button type="button" class="buttons button print-icon" id="print-doc"></button>
                 <button type="button" class="buttons button save-button" id="download" title="Save as PDF" role="button" aria-controls="email-overlay"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                 <button type="button" class="buttons button info-icon" ng-click="infoShow(true)" title="Information"></button>
             </div>
@@ -70,8 +70,8 @@
                     <div class="col-xs-12 col-sm-7 col-md-7">
                         <div class="row chart-buttons-row" print-remove>
                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                <button class="btn btn-primary" ng-click="chartOneOpen = true" title="bar chart description" ng-disabled="chartOneOpen"><i class="fa fa-bar-chart"></i></button>
-                                <button class="btn btn-primary" ng-click="chartOneOpen = false" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-pie-chart"></i></button>
+                                <button class="btn btn-primary" id="bar-chart" ng-click="chartOneOpen = true" title="bar chart description" ng-disabled="chartOneOpen"><i class="fa fa-bar-chart"></i></button>
+                                <button class="btn btn-primary" id="donut-chart" ng-click="chartOneOpen = false" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-pie-chart"></i></button>
                                 <button class="btn btn-primary print-dup" print-remove onclick="window.print()" style="float:right">
                                     Print Result
                                 </button>
@@ -79,8 +79,8 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12" id="chartBox">
-                                <div id="container" ng-show="chartOneOpen" style="margin:0 auto;width: 327px; height: 300px;" ng-class="{largeWidth: needSS}"></div>
-                                <div id="donutContainer" ng-hide="chartOneOpen" style="margin:0 auto;width: 327px; height: 300px; " ng-class="{largeWidth: needSS}"></div>
+                                <div id="container" style="margin:0 auto;width: 327px; height: 300px;" ng-class="{largeWidth: needSS}"></div>
+                                <div id="donutContainer" style="margin:0 auto;width: 327px; height: 300px; display:none;" ng-class="{largeWidth: needSS}"></div>
                             </div>
                         </div>
                     </div>

@@ -2,7 +2,6 @@ app.service('PdfMaker', [function() {
 
     this.createChart = function(salary,result){
 
-        console.log(salary);
        
         var moneyFormat = wNumb({
             mark: '.',

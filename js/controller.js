@@ -34,7 +34,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
 
     $('.selectpicker').on('change', function() {
         paymentFrequency= $('.selectpicker option:selected').val();
-        console.log("paymentFrequency", paymentFrequency)
+        // console.log("paymentFrequency", paymentFrequency)
         //paymentFrequency=
         calculateFinal();
         $timeout(0);
@@ -62,11 +62,15 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
     annualSalarySlider.noUiSlider.on('update', function(values, handle) {
         annualSalaryInput.value = values[handle];
         $scope.annualSalary = (values[handle]);
-        calculateFinal();
     });
     
     annualSalaryInput.addEventListener("change", function() {
         annualSalarySlider.noUiSlider.set($scope.annualSalary);
+    });
+
+    annualSalarySlider.noUiSlider.on('set', function(values, handle) {
+        // console.log("here");
+        calculateFinal();
     });
     
     // annualSalarySlider.noUiSlider.on('set', function(values, handle) {
@@ -93,9 +97,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
 
         }
 
-        console.log("1.",taxOnIncome);
-        console.log("2.",netAnnualIncomeAfterTax);
-        console.log("3.",netPaymentPerPeriod);
+        // console.log("1.",taxOnIncome);
+        // console.log("2.",netAnnualIncomeAfterTax);
+        // console.log("3.",netPaymentPerPeriod);
 
         ChartServiceHc.createChart(Number(taxOnIncome.toFixed(2)), Number(netAnnualIncomeAfterTax.toFixed(2)), false);
         DonutChartServiceHc.createChart( Number(taxOnIncome.toFixed(2)), Number(netAnnualIncomeAfterTax.toFixed(2)) );
@@ -106,27 +110,35 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
         PdfMaker.createChart(Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')),$scope.result);
     });
 
-    // document.getElementById("print-doc").addEventListener("click",function(){
-    //     console.log("here");
-    //     if(!$scope.chartOneOpen){
-    //         // $scope.chartOneOpen  = true;
-    //         // console.log($scope.chartOneOpen);
-    //         document.getElementById("container").style.display = "block";
-    //         // $timeout(0);
-    //        // window.print();
-    //        // setTimeout(function(){
-    //         // document.getElementById("container").style.display = "none";
-    //      // },2000);
-    //     }else{
-    //         $scope.chartOneOpen  = false;
-    //         console.log($scope.chartOneOpen);
-    //         $timeout(0);
-    //       // document.getElementById("donutContainer").style.display = "block";  
-    //       // window.print();
-    //       // setTimeout(function(){
-    //       //   document.getElementById("donutContainer").style.display = "none";
-    //       // },2000);
-    //     }            
-    // });
+    document.getElementById("bar-chart").addEventListener("click",function(){
+        $scope.chartOneOpen = true;
+        document.getElementById("donutContainer").style.display = "none";
+        document.getElementById("container").style.display = "block";
+    });
+
+    document.getElementById("donut-chart").addEventListener("click",function(){
+        $scope.chartOneOpen = false;
+        document.getElementById("container").style.display = "none";
+        document.getElementById("donutContainer").style.display = "block";
+    });
+
+
+    document.getElementById("print-doc").addEventListener("click",function(){
+
+        if($scope.chartOneOpen){
+        document.getElementById("donutContainer").style.display = "block";
+           window.print();
+           setTimeout(function(){
+            document.getElementById("donutContainer").style.display = "none";
+         },100);
+       }else{
+        document.getElementById("container").style.display = "block";
+           window.print();
+           setTimeout(function(){
+            document.getElementById("container").style.display = "none";
+         },100);
+       }
+          
+    });
 
 }]);

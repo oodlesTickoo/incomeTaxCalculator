@@ -7,9 +7,6 @@ app.service('DonutChartServiceHc', function() {
 
         var taxOnIncomePercentage = taxOnIncome / total * 100;
 
-        var length = $("#highcharts-6").width;
-        console.log(length);
-
         $('#donutContainer').highcharts({
             chart: {
                 plotBackgroundColor: null,
