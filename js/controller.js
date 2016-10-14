@@ -123,10 +123,10 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
         document.getElementById("donutContainer").style.display = "block";
     });
 
+    $(".print-doc").on("click",printBothCharts);
 
-    document.getElementById("print-doc").addEventListener("click",function(){
-
-        if($scope.chartOneOpen){
+    function printBothCharts(){
+            if($scope.chartOneOpen){
         document.getElementById("donutContainer").style.display = "block";
            window.print();
            setTimeout(function(){
@@ -138,8 +138,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
            setTimeout(function(){
             document.getElementById("container").style.display = "none";
          },100);
-       }
-          
-    });
+       }    
+   };
 
 }]);
