@@ -70,7 +70,7 @@ app.service('DonutChartServiceHc', function() {
                                     .attr({
                                         verticalAlign: 'middle',
                                         y: (chart.chartHeight * 0.4),
-                                        x: (chart.chartWidth * 0.38),
+                                        x: (chart.chartWidth * 0.33),
                                         text: '<span style="font-weight:700; font-size:14px;">' + this.series.data[this.x].name + '</span><br><span style="text-align:center; width=100px;">    $  ' + Highcharts.numberFormat((((this.y / 100) * total).toFixed(2)), 2, '.') + '</span>'
                                     });
                                 var point = this,
@@ -100,7 +100,7 @@ app.service('DonutChartServiceHc', function() {
                                     .show()
                                     .attr({
                                         y: (chart.chartHeight * 0.4),
-                                        x: (chart.chartWidth * 0.38),
+                                        x: (chart.chartWidth * 0.33),
                                         text: '<span style="font-weight:700; font-size:14px;">' + 'Income Tax Calculator' + '</span>'
                                     });
                             }
@@ -114,8 +114,8 @@ app.service('DonutChartServiceHc', function() {
                 innerSize: '70%',
                 colorByPoint: true,
                 data: [
-                    ['Tax On Income', taxOnIncomePercentage],
-                    ['Net Income Per Annum', netIncomePerAnnumPercentage]
+                    ['Net Income Per Annum', netIncomePerAnnumPercentage],
+                    ['Tax On Income', taxOnIncomePercentage]
                 ]
             }]
         }, function(chart) {
@@ -124,7 +124,7 @@ app.service('DonutChartServiceHc', function() {
                 .css({
                     color: '#000',
                     textAlign: 'left',
-                    width: '130px',
+                    // width: '130px',
                 })
                 .add();
 
@@ -132,7 +132,7 @@ app.service('DonutChartServiceHc', function() {
                 .show()
                 .attr({
                     y: (chart.chartHeight * 0.4),
-                    x: (chart.chartWidth * 0.38),
+                    x: (chart.chartWidth * 0.33),
                     text: '<span style="font-weight:700; font-size:14px;">' + 'Income Tax Calculator' + '</span>'
                 });
 

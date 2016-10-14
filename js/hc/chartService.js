@@ -50,11 +50,11 @@ app.service('ChartServiceHc',function(){
         series: [{
             colorByPoint: true,
             data: [{
-                name: 'Tax On Income',
-                y: taxOnIncome,
-            }, {
                 name: 'Net Income Per Annum',
                 y: netIncomePerAnnum,
+            }, {
+                name: 'Tax On Income',
+                y: taxOnIncome,
             }]
         }],
 
