@@ -46,7 +46,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
         start: [$scope.annualSalary],
         range: {
             'min': [0],
-            'max': [10000000]
+            'max': [2000000]
         },
         step: 500,
         format: wNumb({
