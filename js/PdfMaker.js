@@ -95,7 +95,7 @@ app.service('PdfMaker', [function() {
         });
 
         doc.autoTable(columnsValues, rowsValues, {
-            margin: { top: 100 },
+            margin: { top: 80 },
             styles: {
                 // fontSize:20,
                 halign: "left",
@@ -103,8 +103,8 @@ app.service('PdfMaker', [function() {
                 // columnWidth : 400
             },
             columnStyles: {
-                info: { columnWidth: 370 },
-                value: { columnWidth: 147 }
+                info: { columnWidth: 350 },
+                value: { columnWidth: 167 }
             },
         });
 
