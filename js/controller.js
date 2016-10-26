@@ -2,6 +2,10 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
 
     $scope.result={}
 
+    $scope.forms = {};
+
+    $scope.personalDetails = {};
+
     $scope.chartOneOpen = true;
 
     String.prototype.replaceAll = function(search, replacement) {
@@ -34,9 +38,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
 
     $('.selectpicker').on('change', function() {
         paymentFrequency= $('.selectpicker option:selected').val();
-        // console.log("paymentFrequency", paymentFrequency)
-        //paymentFrequency=
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
@@ -69,8 +71,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
     });
 
     annualSalarySlider.noUiSlider.on('set', function(values, handle) {
-        // console.log("here");
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
     
@@ -79,8 +80,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
     //     $scope.annualSalary = (values[handle]);
     // });
     
-    function calculateFinal() {
-
+    $scope.calculateFinal = function(isValid){
+        if(isValid){
         var salary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
         var taxOnIncome = TaxRateCalculator.getTaxBase(salary) +
             (salary - TaxRateCalculator.getLowerBoundValue(salary) + 1) * TaxRateCalculator.getTaxRate(salary);
@@ -104,11 +105,21 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
 
         ChartServiceHc.createChart(Number(taxOnIncome.toFixed(2)), Number(netAnnualIncomeAfterTax.toFixed(2)), false);
         DonutChartServiceHc.createChart( Number(taxOnIncome.toFixed(2)), Number(netAnnualIncomeAfterTax.toFixed(2)) );
+    }else{
+               $("#myModal").modal('show');
+        $("html, body").animate({ scrollTop: 0 }, "slow");
     }
-    calculateFinal();
+    }
+
+    $scope.calculateFinal(true);
 
     document.getElementById("download").addEventListener("click",function(){
-        PdfMaker.createChart(Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')),$scope.result);
+        if($scope.forms.ttrForm.$valid){
+        PdfMaker.createChart($scope.personalDetails,Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')),$scope.result);
+    }else{
+        $("#myModal").modal('show');
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    }
     });
 
     document.getElementById("bar-chart").addEventListener("click",function(){
@@ -126,6 +137,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
     $(".print-doc").on("click",printBothCharts);
 
     function printBothCharts(){
+
+        if($scope.forms.ttrForm.$valid){
+
             if($scope.chartOneOpen){
         document.getElementById("donutContainer").style.display = "block";
            window.print();
@@ -139,6 +153,10 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
             document.getElementById("container").style.display = "none";
          },100);
        }    
-   };
+   }else{
+        $("#myModal").modal('show');
+        $("html, body").animate({ scrollTop: 0 }, "slow");    
+   }
+}
 
 }]);
