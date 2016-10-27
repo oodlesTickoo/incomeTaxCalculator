@@ -1,12 +1,7 @@
 app.service('PdfMaker', [function() {
 
     this.createChart = function(extraDetails,salary, result) {
-
         function reduceToCapitalize(nameArr) {
-            if (nameArr.length < 2) {
-                var name = nameArr[0];
-                return name[0].toUpperCase() + name.slice(1);
-            }
             return nameArr.reduce(function(first, second) {
                 return first[0].toUpperCase() + first.slice(1) + " " + second[0].toUpperCase() + second.slice(1)
             })
@@ -59,9 +54,9 @@ app.service('PdfMaker', [function() {
             { "info": "Net Annual Income After Tax", "value": moneyFormat.to(result.netAnnualIncomeAfterTax) }
         ];
 
-                if (extraDetails.address !== undefined && extraDetails.address.length !== 0) {
-            rowsValues.push({ "info": "Address", "value": reduceToCapitalize(extraDetails.address.trim().replaceAll('\n', ' ').replace(/\s+/g, " ").split(" ")) });
-        }
+        //         if (extraDetails.address !== undefined && extraDetails.address.length !== 0) {
+        //     rowsValues.push({ "info": "Address", "value": reduceToCapitalize(extraDetails.address.trim().replaceAll('\n', ' ').replace(/\s+/g, " ").split(" ")) });
+        // }
 
         if (extraDetails.postalCode != undefined) {
             var postCode = extraDetails.postalCode;
