@@ -95,12 +95,6 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <label for="address">Address</label>
-                                        <textarea class="form-control" name="address" ng-model="personalDetails.address" id="address"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="form-group">
                                         <label for="postal-code">Postal Code</label>
                                         <input type="number" name="postalCode" ng-model="personalDetails.postalCode" class="form-control postal-code" id="postal-code" ng-minlength="4" ng-maxlength="4" onClick="this.select();">
                                         <p class="err-msg" ng-show="!forms.ttrForm.postalCode.$pristine &&forms.ttrForm.postalCode.$invalid">Enter a valid 4-Digit postal code</p>
