@@ -801,6 +801,11 @@ float:right;
   }
 }
 
+@media (max-width: 330px){
+#container,#donutContainer{
+  margin-left:-15px !important;
+}
+}
 
 
 .form-heading{
