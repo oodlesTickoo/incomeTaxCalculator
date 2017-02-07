@@ -5,9 +5,16 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
     $scope.forms = {};
 
     $scope.personalDetails = {};
+    $scope.personalDetails = {
+        firstName : "Amit",
+        lastName : "Kumar",
+        email : "iamitkrs@gmail.com",
+        mobile: 412121212,
+        postalCode : 1234
+    };
 
     $scope.chartOneOpen = true;
-
+$scope.tempp;
     String.prototype.replaceAll = function(search, replacement) {
         var target = this;
         return target.split(search).join(replacement);
@@ -105,6 +112,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
 
         ChartServiceHc.createChart(Number(taxOnIncome.toFixed(2)), Number(netAnnualIncomeAfterTax.toFixed(2)), false);
         DonutChartServiceHc.createChart( Number(taxOnIncome.toFixed(2)), Number(netAnnualIncomeAfterTax.toFixed(2)) );
+
+        
     }else{
                $("#myModal").modal('show');
         $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -115,7 +124,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator','Char
 
     document.getElementById("download").addEventListener("click",function(){
         if($scope.forms.ttrForm.$valid){
-        PdfMaker.createChart($scope.personalDetails,Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')),$scope.result);
+        PdfMaker.createChart($scope.personalDetails,Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')),$scope.result,$scope.tempp);
     }else{
         $("#myModal").modal('show');
         $("html, body").animate({ scrollTop: 0 }, "slow");
