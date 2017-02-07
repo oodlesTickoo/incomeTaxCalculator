@@ -1,13 +1,44 @@
 app.service('PdfMaker', [function() {
 
-    this.createChart = function(extraDetails, salary, result, tempp) {
+    this.createChart = function(extraDetails, salary, result) {
         function reduceToCapitalize(nameArr) {
             return nameArr.reduce(function(first, second) {
                 return first[0].toUpperCase() + first.slice(1) + " " + second[0].toUpperCase() + second.slice(1)
             })
         }
 
-       
+       /*var dataURL;
+
+        function loadImages(sources, callback) {
+            var images;
+            images = new Image();
+            images.setAttribute('crossOrigin', 'anonymous');
+            images.onload = function() {
+                callback(images);
+            };
+            images.src = sources;
+
+        }
+
+        var sources = 'images/spongebob.png';
+
+
+
+        loadImages(sources, function(images) {
+
+
+            var canvas = document.createElement("canvas");
+            var context = canvas.getContext("2d");
+            context.drawImage(images, 250, 250, 250, 250);
+
+            dataURL = canvas.toDataURL();
+            console.log("dataURL", dataURL);
+            doc.addImage(dataURL, 'PNG', 40, 200);
+
+
+            doc.save('IncomeTaxCalculator.pdf');
+
+        });*/
         var moneyFormat = wNumb({
             mark: '.',
             thousand: ',',
@@ -132,6 +163,8 @@ app.service('PdfMaker', [function() {
         doc.text(510,810,'PAGE ' + 1);       
 
 
+
+
         doc.autoTable(columnsInformation, rowsInformation, {
             margin: { top: top+290 },
             styles: {
@@ -143,6 +176,8 @@ app.service('PdfMaker', [function() {
                 fontSize: 10
             }
         });
+
+        doc.addPage();
 
         doc.save('IncomeTaxCalculator.pdf');
 
