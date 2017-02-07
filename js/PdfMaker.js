@@ -7,38 +7,7 @@ app.service('PdfMaker', [function() {
             })
         }
 
-        var dataURL;
-
-        function loadImages(sources, callback) {
-            var images;
-            images = new Image();
-            images.setAttribute('crossOrigin', 'anonymous');
-            images.onload = function() {
-                callback(images);
-            };
-            images.src = sources;
-
-        }
-
-        var sources = 'images/spongebob.png';
-
-
-
-        loadImages(sources, function(images) {
-
-
-            var canvas = document.createElement("canvas");
-            var context = canvas.getContext("2d");
-            context.drawImage(images, 250, 30, 250, 250);
-
-            dataURL = canvas.toDataURL();
-            console.log("dataURL", dataURL);
-            doc.addImage(dataURL, 'PNG', 40, 700);
-
-
-            doc.save('IncomeTaxCalculator.pdf');
-
-        });
+       
         var moneyFormat = wNumb({
             mark: '.',
             thousand: ',',
@@ -154,20 +123,17 @@ app.service('PdfMaker', [function() {
         canvg(canvas, $('#container').highcharts().getSVG());
 
         var img = canvas.toDataURL("image/png");
-        //console.log(img);
-        // console.log(tempp);
 
 
         doc.addImage(img, 'PNG', 150, top + 20);
 
-        // doc.addImage(imgData2,'PNG',40,780);
-        // doc.setFontSize(10);
-        // doc.text(510,810,'PAGE ' + 1);       
+        doc.addImage(imgData2,'PNG',40,780);
+        doc.setFontSize(10);
+        doc.text(510,810,'PAGE ' + 1);       
 
-        // doc.addPage();
 
         doc.autoTable(columnsInformation, rowsInformation, {
-            margin: { top: top + 275 },
+            margin: { top: top+290 },
             styles: {
                 //   rowHeight:40,
                 //   halign : 'left',
@@ -177,6 +143,8 @@ app.service('PdfMaker', [function() {
                 fontSize: 10
             }
         });
+
+        doc.save('IncomeTaxCalculator.pdf');
 
 
     }
