@@ -1,6 +1,6 @@
 app.service('PdfMaker', [function() {
 
-    this.createChart = function(extraDetails, salary, result) {
+    this.createChart = function(extraDetails, salary, result,strr) {
         function reduceToCapitalize(nameArr) {
             return nameArr.reduce(function(first, second) {
                 return first[0].toUpperCase() + first.slice(1) + " " + second[0].toUpperCase() + second.slice(1)
@@ -169,6 +169,8 @@ app.service('PdfMaker', [function() {
         });
 
         doc.addPage();
+
+         doc.addImage(strr,'PNG',40,20);
 
         doc.save('IncomeTaxCalculator.pdf');
 

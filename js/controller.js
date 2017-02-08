@@ -123,11 +123,11 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                 return window.btoa(binary);
             }
 
-           
+
             httpGetAsync("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function(blob) {
-                var str="data:image/jpeg;base64," + _arrayBufferToBase64(blob) +"";
-                console.log(str);
-                document.getElementById("imagee").src=str;
+                var str = "data:image/jpeg;base64," + _arrayBufferToBase64(blob) + "";
+                PdfMaker.createChart($scope.personalDetails, Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')), $scope.result,str);
+
             });
 
 
