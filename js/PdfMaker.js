@@ -149,7 +149,7 @@ app.service('PdfMaker', [function() {
 
         top = doc.autoTableEndPosY();
 
-        doc.addImage(imgData2,'PNG',40,780);
+        doc.addImage(imgData2,'JPEG',40,780);
         doc.setFontSize(10);
         doc.text(510,810,'PAGE ' + 1);       
 
