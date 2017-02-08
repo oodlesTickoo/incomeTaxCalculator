@@ -133,9 +133,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                 return window.btoa(binary);
             };
 
-            fetchBlob("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function(blob) {
+            /*fetchBlob("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function(blob) {
                 console.log(_arrayBufferToBase64(blob));
-            });
+            });*/
             httpGetAsync("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function() {
                 // Array buffer to Base64:
                 console.log(_arrayBufferToBase64(blob));
