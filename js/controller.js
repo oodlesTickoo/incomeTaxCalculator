@@ -124,6 +124,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
 
 
             function _arrayBufferToBase64(buffer) {
+                debugger;
                 var binary = '';
                 console.log("1");
                 var bytes = new Uint8Array(buffer);
@@ -134,7 +135,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                 }
                 console.log("3");
                 return window.btoa(binary);
-            };
+            }
 
             /*fetchBlob("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function(blob) {
                 console.log(_arrayBufferToBase64(blob));
@@ -159,15 +160,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                     // time to partay!!!
                 }
             }*/
-
-
-
-
-
-
-
-
-
 
 
         } else {
