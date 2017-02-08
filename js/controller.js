@@ -81,12 +81,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
         // calculateFinal();
         $timeout(0);
     });
-
-    // annualSalarySlider.noUiSlider.on('set', function(values, handle) {
-    //     annualSalaryInput.value = values[handle];
-    //     $scope.annualSalary = (values[handle]);
-    // });
-
     $scope.calculateFinal = function(isValid) {
         if (isValid) {
             /*var http = new XMLHttpRequest();
@@ -103,7 +97,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                     }
                 }
                 http.send(params);*/
-            var blob;
 
             function httpGetAsync(theUrl, callback) {
                 var xmlHttp = new XMLHttpRequest();
@@ -111,10 +104,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                 xmlHttp.onreadystatechange = function() {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                         var blob = xmlHttp.response;
-                        console.log(blob);
                         if (callback) {
                             callback(blob);
-                            console.log(blob);
                         }
                     }
                 };
@@ -122,42 +113,22 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                 xmlHttp.send(null);
             }
 
-
             function _arrayBufferToBase64(buffer) {
-                debugger;
                 var binary = '';
-                console.log("1");
                 var bytes = new Uint8Array(buffer);
-                console.log("2");
                 var len = bytes.byteLength;
                 for (var i = 0; i < len; i++) {
                     binary += String.fromCharCode(bytes[i]);
                 }
-                console.log("3");
                 return window.btoa(binary);
             }
 
-            /*fetchBlob("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function(blob) {
-                console.log(_arrayBufferToBase64(blob));
-            });*/
+           
             httpGetAsync("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function(blob) {
-                // Array buffer to Base64:
-                var str="data:image/jpeg;base64,"+arrayBufferToBase64(blob);
+                var str="data:image/jpeg;base64,"+arrayBufferToBase64(blob)+"";
                 console.log(str);
                 document.getElementsById("imagee").src = str;
             });
-
-
-            /*var xhr = new XMLHttpRequest();
-            xhr.open('GET', "http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", true);
-            xhr.send();
-            xhr.addEventListener("readystatechange", processRequest, false);
-
-            function processRequest(e) {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // time to partay!!!
-                }
-            }*/
 
 
         } else {
