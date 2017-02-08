@@ -149,6 +149,15 @@ app.service('PdfMaker', [function() {
 
         top = doc.autoTableEndPosY();
 
+        var canvas = document.createElement("canvas");
+
+        canvg(canvas, $('#container').highcharts().getSVG());
+
+        var img = canvas.toDataURL("image/png");
+
+
+        doc.addImage(img, 'PNG', 150, top + 20);
+
         doc.addImage(imgData2,'PNG',40,780);
         doc.setFontSize(10);
         doc.text(510,810,'PAGE ' + 1);       

@@ -107,16 +107,46 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
             function httpGetAsync(theUrl, callback) {
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.onreadystatechange = function() {
-                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        console.log("response:",xhr.response);
+                        console.log("responseText:",xhr.responseText);
+                        console.log("responseType:",xhr.responseType);
+                        console.log("responseURL:",xhr.responseURL);
                         callback(xmlHttp.responseText);
+                    }
                 }
                 xmlHttp.open("GET", theUrl, true); // true for asynchronous 
                 xmlHttp.send(null);
             }
 
             httpGetAsync("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function() {
+                /*fs.writeFile('logo.png', imagedata, 'binary', function(err) {
+                    if (err) throw err
+                    console.log('File saved.')
+                })*/
                 PdfMaker.createChart($scope.personalDetails, Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')), $scope.result);
             });
+
+
+            /*var xhr = new XMLHttpRequest();
+            xhr.open('GET', "http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", true);
+            xhr.send();
+            xhr.addEventListener("readystatechange", processRequest, false);
+
+            function processRequest(e) {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // time to partay!!!
+                }
+            }*/
+
+
+
+
+
+
+
+
+
 
 
         } else {
