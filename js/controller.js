@@ -125,11 +125,14 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
 
             function _arrayBufferToBase64(buffer) {
                 var binary = '';
+                console.log("1");
                 var bytes = new Uint8Array(buffer);
+                console.log("2");
                 var len = bytes.byteLength;
                 for (var i = 0; i < len; i++) {
                     binary += String.fromCharCode(bytes[i]);
                 }
+                console.log("3");
                 return window.btoa(binary);
             };
 
@@ -139,6 +142,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
             httpGetAsync("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function() {
                 // Array buffer to Base64:
                 console.log(_arrayBufferToBase64(blob));
+                console.log("4");
                 var str=_arrayBufferToBase64(blob);
                 document.getElementsByClassName("comp-logo").src = "data:image/jpeg;base64,' + str + '";
                 // Or: '<img src="data:image/jpeg;base64,' + str + '">'
