@@ -103,7 +103,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                     }
                 }
                 http.send(params);*/
-                var blob;
+            var blob;
 
             function httpGetAsync(theUrl, callback) {
                 var xmlHttp = new XMLHttpRequest();
@@ -122,12 +122,25 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                 xmlHttp.send(null);
             }
 
+
+            function _arrayBufferToBase64(buffer) {
+                var binary = '';
+                var bytes = new Uint8Array(buffer);
+                var len = bytes.byteLength;
+                for (var i = 0; i < len; i++) {
+                    binary += String.fromCharCode(bytes[i]);
+                }
+                return window.btoa(binary);
+            };
+
+            fetchBlob("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function(blob) {
+                console.log(_arrayBufferToBase64(blob));
+            });
             httpGetAsync("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function() {
                 // Array buffer to Base64:
-                var str = btoa(String.fromCharCode.apply(null, new Uint8Array(blob)));
-
-                console.log(str);
-                document.getElementsByClassName("comp-logo").src="data:image/jpeg;base64,' + str + '";
+                console.log(_arrayBufferToBase64(blob));
+                var str=_arrayBufferToBase64(blob);
+                document.getElementsByClassName("comp-logo").src = "data:image/jpeg;base64,' + str + '";
                 // Or: '<img src="data:image/jpeg;base64,' + str + '">'
             });
 
