@@ -142,11 +142,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
             });*/
             httpGetAsync("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function(blob) {
                 // Array buffer to Base64:
-                console.log(_arrayBufferToBase64(blob));
-                console.log("4");
-                var str=_arrayBufferToBase64(blob);
-                document.getElementsByClassName("comp-logo").src = "data:image/jpeg;base64,' + str + '";
-                // Or: '<img src="data:image/jpeg;base64,' + str + '">'
+                var str="data:image/jpeg;base64,"+arrayBufferToBase64(blob);
+                console.log(str);
+                document.getElementsById("imagee").src = str;
             });
 
 
