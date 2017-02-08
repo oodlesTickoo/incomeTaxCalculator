@@ -111,8 +111,10 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                 xmlHttp.onreadystatechange = function() {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                         var blob = xmlHttp.response;
+                        console.log(blob);
                         if (callback) {
                             callback(blob);
+                            console.log(blob);
                         }
                     }
                 };
