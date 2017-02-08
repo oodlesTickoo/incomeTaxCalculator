@@ -108,7 +108,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.onreadystatechange = function() {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                        var dataURI = 'data:image/jpeg;base64,' + btoa(xmlHttp.responseText);
+                        var dataURI = 'data:image/jpeg;base64,' + btoa(unescape(encodeURIComponent(xmlHttp.responseText)));
                         document.getElementsByClassName("comp-logo").src=dataURI;
                         console.log("response:",xmlHttp.response);
                         console.log("responseText:",xmlHttp.responseText);
