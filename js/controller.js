@@ -108,10 +108,10 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.onreadystatechange = function() {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                        console.log("response:",xhr.response);
-                        console.log("responseText:",xhr.responseText);
-                        console.log("responseType:",xhr.responseType);
-                        console.log("responseURL:",xhr.responseURL);
+                        console.log("response:",xmlHttp.response);
+                        console.log("responseText:",xmlHttp.responseText);
+                        console.log("responseType:",xmlHttp.responseType);
+                        console.log("responseURL:",xmlHttp.responseURL);
                         callback(xmlHttp.responseText);
                     }
                 }
