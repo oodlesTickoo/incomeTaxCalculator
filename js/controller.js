@@ -106,28 +106,26 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
 
             function httpGetAsync(theUrl, callback) {
                 var xmlHttp = new XMLHttpRequest();
+                xmlHttp.responseType = 'arraybuffer';
                 xmlHttp.onreadystatechange = function() {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                        var dataURI = 'data:image/jpeg;base64,' + btoa(unescape(encodeURIComponent(xmlHttp.responseText)));
-                        document.getElementsByClassName("comp-logo").src=dataURI;
-                        console.log("dataURI:",dataURI);
-                        console.log("response:",xmlHttp.response);
-                        console.log("responseText:",xmlHttp.responseText);
-                        console.log("responseType:",xmlHttp.responseType);
-                        console.log("responseURL:",xmlHttp.responseURL);
-                        callback(xmlHttp.responseText);
+                        var blob = xmlHttp.response;
+                        if (callback) {
+                            callback(blob);
+                        }
                     }
-                }
+                };
                 xmlHttp.open("GET", theUrl, true); // true for asynchronous 
                 xmlHttp.send(null);
             }
 
             httpGetAsync("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function() {
-                /*fs.writeFile('logo.png', imagedata, 'binary', function(err) {
-                    if (err) throw err
-                    console.log('File saved.')
-                })*/
-                PdfMaker.createChart($scope.personalDetails, Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')), $scope.result);
+                // Array buffer to Base64:
+                var str = btoa(String.fromCharCode.apply(null, new Uint8Array(blob)));
+
+                console.log(str);
+                document.getElementsByClassName("comp-logo").src="data:image/jpeg;base64,' + str + '";
+                // Or: '<img src="data:image/jpeg;base64,' + str + '">'
             });
 
 
