@@ -103,6 +103,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                     }
                 }
                 http.send(params);*/
+                var blob;
 
             function httpGetAsync(theUrl, callback) {
                 var xmlHttp = new XMLHttpRequest();
