@@ -110,6 +110,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                         var dataURI = 'data:image/jpeg;base64,' + btoa(unescape(encodeURIComponent(xmlHttp.responseText)));
                         document.getElementsByClassName("comp-logo").src=dataURI;
+                        console.log("dataURI:",dataURI);
                         console.log("response:",xmlHttp.response);
                         console.log("responseText:",xmlHttp.responseText);
                         console.log("responseType:",xmlHttp.responseType);
