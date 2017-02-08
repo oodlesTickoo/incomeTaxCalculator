@@ -140,7 +140,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
             /*fetchBlob("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function(blob) {
                 console.log(_arrayBufferToBase64(blob));
             });*/
-            httpGetAsync("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function() {
+            httpGetAsync("http://180.151.85.194:3000/webshot?fy=2010&age=25&cses=60000&thp=37000", function(blob) {
                 // Array buffer to Base64:
                 console.log(_arrayBufferToBase64(blob));
                 console.log("4");
