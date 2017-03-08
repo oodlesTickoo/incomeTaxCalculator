@@ -1,3 +1,33 @@
+
+@font-face {font-family: "Nuber W00 Regular";
+  src: url("../fonts/90edf6de791f8eeaf4a43e2244098b98.eot"); /* IE9*/
+  src: url("../fonts/90edf6de791f8eeaf4a43e2244098b98.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("../fonts/90edf6de791f8eeaf4a43e2244098b98.woff2") format("woff2"), /* chrome、firefox */
+  url("../fonts/90edf6de791f8eeaf4a43e2244098b98.woff") format("woff"), /* chrome、firefox */
+  url("../fonts/90edf6de791f8eeaf4a43e2244098b98.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("../fonts/90edf6de791f8eeaf4a43e2244098b98.svg#Nuber W00 Regular") format("svg"); /* iOS 4.1- */
+}
+
+@font-face {
+    font-family: 'AgendaLight';
+    src: url("../fonts/AgendaLight.ttf");
+    /*src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.5.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.5.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.5.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.5.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular") format("svg");*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AgendaMedium';
+    src: url("../fonts/AgendaMedium.ttf");
+    /*src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.5.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.5.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.5.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.5.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular") format("svg");*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: AgendaLight;
+}
+
 .otrp-calculator{
 	    display: block;
 	    max-width: 614px;

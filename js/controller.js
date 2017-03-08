@@ -112,7 +112,9 @@ $scope.tempp;
 
         ChartServiceHc.createChart(Number(taxOnIncome.toFixed(2)), Number(netAnnualIncomeAfterTax.toFixed(2)), false);
         DonutChartServiceHc.createChart( Number(taxOnIncome.toFixed(2)), Number(netAnnualIncomeAfterTax.toFixed(2)) );
-
+        //PdfMaker.createChart($scope.personalDetails,Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')),$scope.result);
+        document.getElementById("ymm").style.display="none";
+        document.getElementById("ymm2").style.display="block";
         
     }else{
                $("#myModal").modal('show');

@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>HTML-DOCX test</title>
+<link rel="stylesheet" href="css/font-awesome.css">
+
   <script src="http://cdn.tinymce.com/4/tinymce.min.js"></script>
   <script src="FileSaver.js"></script>
   <script src="html-docx.js"></script>
@@ -10,9 +12,10 @@
 <body>
   <p>Enter/paste your document here:</p>
   <textarea id="content" cols="60" rows="10">
-    <p>We all live in a yellow submarine, yellow submarine, yellow submarine, yellow submarine</p>
+    <p style="font-family: cursive;">We all live in a yellow submarine, yellow submarine, yellow submarine, yellow submarine</p>
     <p>Images can also be exported if you source them as base64 DATA URI.</p>
-    <img crossOrigin="Anonymous" src="cat.jpg">
+    <img src="cat.jpg" style="width: 40%">
+    <img src="cat.jpg" style="width: 40%">
   </textarea>
   <div class="page-orientation">
     <span>Page orientation:</span>
