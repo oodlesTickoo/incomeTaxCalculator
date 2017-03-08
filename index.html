@@ -52,9 +52,8 @@
             // one whereas getDoc() returns realtime document - exactly what we need.
         var contentDocument = tinymce.get('content').getDoc();
         var content = '<!DOCTYPE html>' + contentDocument.documentElement.outerHTML;
-        var orientation = document.querySelector('.page-orientation input:checked').value;
         var converted = htmlDocx.asBlob(content, {
-            orientation: orientation
+            orientation: "potrait"
         });
 
         saveAs(converted, 'test.docx');
