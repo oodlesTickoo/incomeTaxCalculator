@@ -28,6 +28,9 @@ body {
     font-family: AgendaLight;
 }
 
+#content p{
+  display: inline-block;
+}
 .otrp-calculator{
 	    display: block;
 	    max-width: 614px;
