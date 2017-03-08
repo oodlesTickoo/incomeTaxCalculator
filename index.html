@@ -68,7 +68,7 @@
       var ctx = canvas.getContext('2d');
       [].forEach.call(regularImages, function (imgElement) {
         // preparing canvas for drawing
-        context.drawImage(images, 250, 30, 250, 250);
+        ctx.drawImage(imgElement, 250, 30, 250, 250);
         // by default toDataURL() produces png image, but you can also export to jpeg
         // checkout function's documentation for more details
         var dataURL = canvas.toDataURL();
