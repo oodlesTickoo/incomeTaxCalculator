@@ -10,529 +10,658 @@
     <script src="FileSaver.js"></script>
     <script src="html-docx.js"></script>
     <title>SuitArt Business Card</title>
-    <style>
-        @font-face {
-            font-family: Pragmatica Light;
-            src: url(fonts/Pragmatica-Light.ttf);
-        }
-
-        @font-face {
-            font-family: Pragmatica Extra Light;
-            src: url(fonts/Pragmatica-ExtraLight.ttf);
-        }
-
-        @font-face {
-            font-family: Pragmatica Medium;
-            src: url(fonts/Pragmatica-Medium.ttf);
-        }
-
-        html,
+<style>
+    @font-face {
+        font-family: 'LatoHeavy';
+        src: url("fonts/LATO-HEAVY.TTF");
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'LatoRegular';
+        src: url("fonts/LATO-REGULAR.TTF");
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'LatoLight';
+        src: url("fonts/LATO-LIGHT.TTF");
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'LatoRegular';
+        font-weight: 500;
+        font-size: 20px;
+        background: rgb(241, 241, 241);
+        -webkit-print-color-adjust: exact;
+        box-sizing: border-box;
+    }
+    
+    .page {
+        position: relative;
+        height: auto;
+        /*            min-height: 815px;*/
+        min-height: 750px;
+        /*width: 50mm;*/
+        width: 590px;
+        display: block;
+        /*background: black;*/
+        page-break-after: auto;
+        /*margin: 50px;*/
+        /*overflow: hidden;*/
+        margin: 0 auto 5px;
+    }
+    
+    @media print {
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Sackers Gothic Std';
-            font-weight: 500;
-            font-size: 20px;
-            background: rgb(241, 241, 241);
-            -webkit-print-color-adjust: exact;
-            box-sizing: border-box;
+            background: black;
         }
-
         .page {
-            position: relative;
-            height: auto;
-            min-height: 815px;
-            /*width: 50mm;*/
-            width: 590px;
-            display: block;
-            /*background: black;*/
-            page-break-after: auto;
-            /*margin: 50px;*/
-            /*overflow: hidden;*/
-            margin: 0 auto 5px;
-        }
-
-        @media print {
-            body {
-                background: black;
-            }
-            .page {
-                margin: 0;
-                height: 100%;
-                width: 100%;
-            }
-        }
-
-        .page.first {
-            border-left: 5px solid green;
-        }
-
-        .bottom {
-            position: absolute;
-            left: 5mm;
-            right: 5mm;
-            bottom: 5mm;
-        }
-
-        .group {
-            margin-top: 3mm;
-        }
-
-        .line {
-            color: white;
-            position: relative;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        .logo {
-            position: relative;
-            width: 80%;
-            left: 10%;
-            top: 15%;
-        }
-        /* new css start */
-
-        .page .first-page {
-            background: url(images/image1.jpg);
-            width: 100%;
+            margin: 0;
             height: 100%;
-            background-size: cover;
-            min-height: 815px;
+            width: 100%;
         }
-
-        .first-page .transparent-box {
-            position: absolute;
-            top: 12mm;
-            left: 10mm;
-            width: calc(100% - 20mm);
-            background: rgba(0, 181, 222, 0.6);
-        }
-
-        .first-page .transparent-box .content {
-            padding: 20px;
-        }
-
-        .first-page .transparent-box .content h2 {
-            font-size: 32px;
-            text-transform: uppercase;
-            padding: 0;
-            margin: 0;
-            color: #fff;
-            font-family: Pragmatica Light;
-            font-weight: normal;
-        }
-
-        .first-page .transparent-box .content h4 {
-            font-size: 21px;
-            text-transform: uppercase;
-            margin: 0;
-            color: #fff;
-            font-family: Pragmatica Extra Light;
-            font-weight: normal;
-            padding: 6px 0 8px 0px;
-        }
-
-        .first-page .transparent-box .content p {
-            font-size: 16px;
-            text-transform: uppercase;
-            padding: 0;
-            margin: 0;
-            color: #000;
-            font-family: Pragmatica Extra Light;
-            font-weight: normal;
-            text-align: justify;
-        }
-
-        .first-page .transparent-box .content .right {
-            float: right;
-        }
-
-        .first-page .transparent-box .content .right h5 {
+    }
+    
+    .page.first {
+        border-left: 5px solid green;
+    }
+    
+    .bottom {
+        position: absolute;
+        left: 5mm;
+        right: 5mm;
+        bottom: 5mm;
+    }
+    
+    .group {
+        margin-top: 3mm;
+    }
+    
+    .line {
+        color: white;
+        position: relative;
+    }
+    
+    .center {
+        text-align: center;
+    }
+    
+    .logo {
+        position: relative;
+        width: 80%;
+        left: 10%;
+        top: 15%;
+    }
+    /* new css start */
+    
+    .page .first-page {
+        background: url(images/img1.png);
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        min-height: 815px;
+    }
+    
+    .first-page .transparent-box {
+        position: absolute;
+        top: 12mm;
+        left: 10mm;
+        width: calc(100% - 20mm);
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+    }
+    
+    .first-page .transparent-box .content {
+        padding: 20px;
+    }
+    
+    .first-page .transparent-box .content h2 {
+        font-size: 30px;
+        text-transform: uppercase;
+        padding: 0;
+        margin: 0;
+        color: #23b8e3;
+        font-family: LatoRegular;
+        font-weight: normal;
+    }
+    
+    .first-page .transparent-box .content h4 {
+        font-size: 21px;
+        text-transform: uppercase;
+        margin: 0;
+        color: #000;
+        font-family: LatoRegular;
+        font-weight: normal;
+        padding: 6px 0 8px 0px;
+    }
+    
+    .first-page .transparent-box .content p {
+        font-size: 16px;
+        text-transform: uppercase;
+        padding: 0;
+        margin: 0;
+        color: #000;
+        font-family: LatoRegular;
+        font-weight: normal;
+        /*            text-align: justify;*/
+        float: left;
+    }
+    
+    .first-page .transparent-box .content .right {
+        /*            float: right;*/
+        text-align: right;
+    }
+    
+    .first-page .transparent-box .content .right h5 {
+        /*
             margin: 0;
             padding: 0;
             font-size: 15px;
             text-align: right;
             font-weight: normal;
-        }
-
-        .first-page .transparent-box .content .right img {
-            width: 75%;
-            float: right;
-            padding: 10px 0px 25px 0px;
-        }
-
-        .page .content-page {
+            margin-right: 7px;
+            */
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+        /* text-align: right; */
+        font-weight: normal;
+        margin-right: 7px;
+        /*            float: right;*/
+        display: inline-block;
+    }
+    
+    .first-page .transparent-box .content .right img {
+        width: 35%;
+        /*            float: right;*/
+        /*            padding: 10px 0px 25px 0px;*/
+    }
+    /* .page .content-page {
             background: #fff;
             padding: 15px 65px;
             min-height: 815px;
-        }
-
-        .page .content-page .based {
-            font-size: 20px;
-            text-align: center;
-            font-family: Pragmatica Light;
-            color: #23b7e0;
-            margin-bottom: 20px;
-        }
-
-        .page .content-page .based.fsmall {
-            font-size: 16px;
-            text-align: left;
-        }
-        .page .content-page .risk-profile {
-            margin-left: 20px;
-        }
-        .page .content-page .risk-profile li:before {
-          content: '';
-          background: #23b8e3;
-          display: inline-block;
-          width: 5px;
-          height: 5px;
-          border-radius: 50%;
-          margin-right: 11px;
-          vertical-align: middle;
-        }
-        .page .content-page h5 {
-            margin: 0;
-            padding-top: 13px;
-            font-family: Pragmatica Light;
-            font-weight: normal;
-            font-size: 21px;
-        }
-
-        .page .content-page h2 {
-            margin: 23px 0 22px 0px;
-            padding-top: 15px;
-            padding: 21px 0 23px 0px;
-            font-family: Pragmatica Light;
-            font-weight: normal;
-            font-size: 27px;
-            border-top: 1px solid #98def1;
-            border-bottom: 1px solid #98def1;
-            width: 88%;
-        }
-        .page .content-page h2 p {
-          text-transform: uppercase;
-          font-size: 15px;
-          padding-bottom: 10px;
-          color: #23b8e3;
-        }
-        .page .content-page h4 {
-            margin: 0;
-            padding: 0;
-            font-weight: normal;
-            font-family: Pragmatica Light;
-            padding-top: 15px;
-            font-size: 19px;
-            color: #23b8e3;
-        }
-        .page .content-page h3 {
-          margin: 0;
-          padding: 0;
-          font-weight: normal;
-          font-family: Pragmatica Light;
-          padding-top: 20px;
-          font-size: 17px;
-          color: #3ac0e5;
-        }
-        .page .content-page h6 {
-            font-family: Pragmatica Light;
-            font-size: 16px;
-            padding: 0;
-            margin: 0;
-            color: #000;
-            padding-top: 12px;
-            font-weight: normal;
-        }
-        .page .content-page p {
-            margin: 0;
-            padding: 0;
-            font-weight: normal;
-            font-family: Pragmatica Light;
-            padding-top: 8px;
-            font-size: 13px;
-            text-align: justify;
-        }
-
-        .page .content-page ul {
-            margin: 7px 0 0 0px;
-            padding: 0;
-        }
-
-        .page .content-page li {
-            list-style-type: none;
-            font-size: 13px;
-            padding: 5px 0px;
-            font-family: Pragmatica Light;
-        }
-
-        .page .detail-page {
-            background: url(images/image2.jpg);
-            width: calc(100% - 30px);
-            background-size: cover;
-            padding: 15px;
-            min-height: 815px;
-        }
-
-        .page .detail-page h2 {
-            margin-top: 38px;
-            margin-bottom: 0;
-            color: #fff;
-            padding: 21px 0 23px 22px;
-            font-family: Pragmatica Light;
-            font-weight: normal;
-            font-size: 27px;
-            border-top: 1px solid #d8d0d0;
-            border-bottom: 1px solid #9c9898;
-        }
-
-        .page .detail-page .padding-left {
-            padding-left: 25px;
-        }
-
-        .page .detail-page h4 {
-            margin: 0;
-            padding: 0;
-            font-weight: normal;
-            font-family: Pragmatica Light;
-            padding-top: 15px;
-            font-size: 19px;
-            color: #fff;
-        }
-
-        .page .detail-page p {
-            margin: 0;
-            padding: 0;
-            font-weight: normal;
-            font-family: Pragmatica Light;
-            padding-top: 4px;
-            color: #fff;
-            font-size: 13px;
-            text-align: justify;
-        }
-
-        .page .detail-page .detail-part {
-            width: 75%;
-            margin: 0 auto;
-        }
-
-        table {
-            width: 100%;
-            margin-top: 25px;
-        }
-
-        table th {
-            background: #23b8e3;
-            width: 50%;
-            padding: 4px 7px;
-            font-size: 15px;
-            color: #fff;
-            font-family: Pragmatica Light;
-            text-align: left;
-            border-right: 1px solid #00888e;
-        }
-
-        table th:last-child {
-            border: 0;
-        }
-
-        table th.border-zero {
-            border: 0;
-        }
-
-        table td {
-            border-bottom: 1px solid #00b3bb;
-            padding: 4px 7px;
-            color: #fff;
-            font-family: Pragmatica Extra Light;
-            text-align: left;
-            font-size: 14px;
-        }
-
-        table td.text-right {
-            text-align: right;
-        }
-
-        .page .sections-page {
-            background-color: #23b8e3;
-            padding: 15px;
-            min-height: 815px;
-        }
-
-        .page .sections-page .section-part {
-            width: 80%;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .page .sections-page .section-part .section {
-            background: #65cde9;
-            padding: 10px;
-            margin-top: 20px;
-        }
-
-        .page .sections-page h2 {
-            margin: 0;
-            padding: 25px 0px;
-            font-size: 29px;
-            color: #fff;
-            font-family: Pragmatica Extra Light;
-        }
-
-        .page .sections-page .section-part .section h4 {
-            margin: 0;
-            padding: 0;
-            font-family: Pragmatica Extra Light;
-            font-size: 15px;
-        }
-
-        .page .sections-page .section-part .section p {
-            margin: 0;
-            padding: 0;
-            font-family: Pragmatica Extra Light;
-            font-size: 14px;
-        }
-
-        .page .financial-page {
-            background: url(images/image3.jpg);
-            width: calc(100% - 30px);
-            background-size: cover;
-            height: calc(100% - 30px);
-            padding: 15px;
-            min-height: 815px;
-        }
-
-        .page .financial-page .financial-page-content {
-            width: 86%;
-            margin: 0 auto;
-        }
-
-        .page .financial-page h2 {
-            color: #fff;
-            font-family: Pragmatica Extra Light;
-            font-size: 29px;
-            padding-top: 40px;
-            padding-bottom: 15px;
-            font-weight: normal;
-            margin: 0;
-        }
-
-        .page .financial-page p {
-            color: #000;
-            font-family: Pragmatica Extra Light;
-            font-size: 17px;
-            padding: 0;
-            margin: 0;
-        }
-
-        .page .financial-page .financial-bottom h3 {
-            color: #000;
-            font-family: Pragmatica Extra Light;
-            font-size: 24px;
-            padding-top: 40px;
-            padding-bottom: 15px;
-            font-weight: normal;
-            margin: 0;
-        }
-
-        .page .financial-page .financial-bottom p {
-            color: #fff;
-            padding-top: 8px;
-            text-align: justify;
-            font-size: 14px;
-        }
-
-        .page .financial-page .financial-bottom p.dear-name {
-            padding-bottom: 8px;
-        }
-
-        .page .financial-page .financial-bottom .financial-sincerly {
-            padding-top: 40px;
-        }
-
-        .page .financial-page .financial-bottom .financial-sincerly span {
-            color: #fff;
-            text-align: justify;
-            font-size: 14px;
-            font-family: Pragmatica Extra Light;
-        }
-
-        .new-table th {
-            border-right: 0;
-            font-size: 14px;
-        }
-
-        .new-table td {
-            color: #000;
-            border-bottom: 0;
-            padding-top: 12px;
-            font-family: Pragmatica Light;
-        }
-
-        .chart-img img {
-            width: 100%;
-            margin-top: 12px;
-        }
-
-        .strategy-info {
-            background: #23b8e3;
-            color: #fff;
-            padding: 10px !important;
-            margin-top: 8px !important;
-        }
-
-        .strategy-padding {
-            padding-top: 30px;
-        }
-        ul.left-margin {
-          margin-left: 25px !important;
-        }
-        .mt20 {
-          margin-top: 20px !important;
-        }
-        .contact-info {
-          margin: 15px 0;
-        }
-        .contact-info div span:first-child {
-            width: 14%;
-            color: #23b8e3;
-            font-weight: 600;
-        }
-        .contact-info div span {
-            display: inline-block;
-            font-size: 13px;
-            font-family: Pragmatica Light;
-        }
-        .arrow-lines li {
-          background: url(images/arrow.png);
-          background-repeat: no-repeat;
-          padding-left: 18px !Important;
-          padding-top: 0 !important;
-          margin-top: 8px;
-          background-size: 2.5%;
-          background-position: 0px 3px;
-        }
-        .arrow-lines li ul li {
-          background: none;
-          padding-left: 0 !important;
-        }
-        .arrow-lines li ul li:before {
-          content: '';
-          background: #23b8e3;
-          display: inline-block;
-          width: 5px;
-          height: 5px;
-          border-radius: 50%;
-          margin-right: 11px;
-          vertical-align: middle;
-        }
-        .small-heading {
-            color: #23b8e3;
-        }
-    </style>
+        }*/
+    
+    .page .content-page {
+        background: url(images/page-second_1.png);
+        height: 100%;
+        background-size: cover;
+        min-height: 815px;
+        padding: 15px 65px;
+    }
+    
+    .page .content-page .based {
+        font-size: 20px;
+        text-align: center;
+        font-family: LatoRegular;
+        color: #23b7e0;
+        margin-bottom: 20px;
+    }
+    
+    .page .content-page .based.fsmall {
+        font-size: 16px;
+        text-align: left;
+    }
+    
+    .page .content-page .risk-profile {
+        margin-left: 20px;
+    }
+    
+    .page .content-page .risk-profile li:before {
+        content: '';
+        background: #23b8e3;
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        margin-right: 11px;
+        vertical-align: middle;
+    }
+    
+    .graph-img img {
+        width: 100%;
+        margin-top: 70px;
+    }
+    
+    .page .content-page h5 {
+        margin: 0;
+        padding-top: 13px;
+        font-family: LatoRegular;
+        font-weight: normal;
+        font-size: 21px;
+    }
+    
+    .page .content-page h2 {
+        margin: 23px 0 22px 0px;
+        padding-top: 15px;
+        padding: 21px 0 23px 0px;
+        font-family: LatoRegular;
+        font-weight: normal;
+        font-size: 27px;
+        border-top: 1px solid #98def1;
+        border-bottom: 1px solid #98def1;
+        width: 88%;
+    }
+    
+    .page .content-page h2 p {
+        text-transform: uppercase;
+        font-size: 15px;
+        padding-bottom: 10px;
+        color: #23b8e3;
+    }
+    
+    .page .content-page h4 {
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+        font-family: LatoRegular;
+        padding-top: 15px;
+        font-size: 19px;
+        color: #23b8e3;
+    }
+    
+    .page .content-page h3 {
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+        font-family: LatoRegular;
+        padding-top: 20px;
+        font-size: 17px;
+        color: #3ac0e5;
+    }
+    
+    .page .content-page h6 {
+        font-family: LatoRegular;
+        font-size: 16px;
+        padding: 0;
+        margin: 0;
+        color: #000;
+        padding-top: 12px;
+        font-weight: normal;
+    }
+    
+    .page .content-page p {
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+        font-family: LatoRegular;
+        padding-top: 8px;
+        font-size: 13px;
+        text-align: justify;
+    }
+    
+    .page .content-page ul {
+        margin: 7px 0 0 0px;
+        padding: 0;
+    }
+    
+    .page .content-page li {
+        list-style-type: none;
+        font-size: 13px;
+        padding: 5px 0px;
+        font-family: LatoRegular;
+    }
+    
+    .page .detail-page {
+        background: url(images/image2.jpg);
+        width: calc(100% - 30px);
+        background-size: cover;
+        padding: 15px;
+        min-height: 815px;
+    }
+    
+    .page .detail-page h2 {
+        margin-top: 38px;
+        margin-bottom: 0;
+        color: #fff;
+        padding: 21px 0 23px 22px;
+        font-family: LatoRegular;
+        font-weight: normal;
+        font-size: 27px;
+        border-top: 1px solid #d8d0d0;
+        border-bottom: 1px solid #9c9898;
+    }
+    
+    .page .detail-page .padding-left {
+        padding-left: 25px;
+    }
+    
+    .page .detail-page h4 {
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+        font-family: LatoRegular;
+        padding-top: 15px;
+        font-size: 19px;
+        color: #fff;
+    }
+    
+    .page .detail-page p {
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+        font-family: LatoRegular;
+        padding-top: 4px;
+        color: #fff;
+        font-size: 13px;
+        text-align: justify;
+    }
+    
+    .page .detail-page .detail-part {
+        width: 75%;
+        margin: 0 auto;
+    }
+    
+    table {
+        width: 100%;
+        margin-top: 25px;
+        border: 1px solid #fff;
+        background: rgba(255, 255, 255, 0.6);
+    }
+    
+    table th {
+        background: #23b8e3;
+        width: 50%;
+        padding: 4px 7px;
+        font-size: 15px;
+        color: #fff;
+        font-family: LatoRegular;
+        text-align: left;
+        border-right: 1px solid #00888e;
+    }
+    
+    table th:last-child {
+        border: 0;
+    }
+    
+    table th.border-zero {
+        border: 0;
+    }
+    
+    table td {
+        border-bottom: 1px solid #00b3bb;
+        padding: 4px 7px;
+        color: #fff;
+        font-family: LatoRegular;
+        text-align: left;
+        font-size: 14px;
+    }
+    
+    table td.text-right {
+        text-align: right;
+    }
+    
+    .page .sections-page {
+        /*            background-color: #23b8e3;*/
+        background: url(images/content-page.png);
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        /*            padding: 15px;*/
+        min-height: 815px;
+    }
+    
+    .page .sections-page .section-part {
+        width: 80%;
+        margin: 0 auto;
+        text-align: left;
+    }
+    
+    .page .sections-page .section-part .section {
+        /*            background: #65cde9;*/
+        background: rgba(101, 205, 233, 0.8);
+        padding: 10px;
+        margin-top: 20px;
+        box-shadow: 2px 4px 12px 0px #06627c;
+    }
+    
+    .page .sections-page h2 {
+        margin: 0;
+        padding: 25px 0px;
+        font-size: 29px;
+        color: #fff;
+        font-family: LatoRegular;
+    }
+    
+    .page .sections-page .section-part .section h4 {
+        margin: 0;
+        padding: 0;
+        font-family: LatoRegular;
+        font-size: 15px;
+    }
+    
+    .page .sections-page .section-part .section p {
+        margin: 0;
+        padding: 0;
+        font-family: LatoRegular;
+        font-size: 14px;
+    }
+    
+    .page .financial-page {
+        background: url(images/page-second.png);
+        width: calc(100% - 30px);
+        background-size: cover;
+        height: calc(100% - 30px);
+        padding: 15px;
+        min-height: 815px;
+    }
+    
+    .page .financial-page .financial-page-content {
+        width: 86%;
+        margin: 0 auto;
+    }
+    
+    .page .financial-page h2 {
+        color: #23b8e3;
+        font-family: LatoRegular;
+        font-size: 29px;
+        padding-top: 40px;
+        padding-bottom: 15px;
+        font-weight: normal;
+        margin: 0;
+    }
+    
+    .page .financial-page p {
+        color: #23b8e3;
+        font-family: LatoRegular;
+        font-size: 17px;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .page .financial-page .financial-bottom h3 {
+        color: #23b8e3;
+        font-family: LatoRegular;
+        font-size: 24px;
+        padding-top: 40px;
+        padding-bottom: 15px;
+        font-weight: normal;
+        margin: 0;
+    }
+    
+    .page .financial-page .financial-bottom p {
+        color: #3c3c3c;
+        padding-top: 8px;
+        text-align: justify;
+        font-size: 14px;
+        text-shadow: 0 0 0 #3c3c3c;
+    }
+    
+    .page .financial-page .financial-bottom p.dear-name {
+        padding-bottom: 8px;
+    }
+    
+    .page .financial-page .financial-bottom .financial-sincerly {
+        padding-top: 40px;
+    }
+    
+    .page .financial-page .financial-bottom .financial-sincerly span {
+        color: #3c3c3c;
+        text-align: justify;
+        font-size: 14px;
+        font-family: LatoRegular;
+        text-shadow: 0 0 0 #3c3c3c;
+    }
+    
+    .new-table th {
+        border-right: 0;
+        font-size: 14px;
+    }
+    
+    .new-table td {
+        color: #000;
+        border-bottom: 0;
+        padding-top: 12px;
+        font-family: LatoRegular;
+    }
+    
+    .chart-img img {
+        width: 100%;
+        margin-top: 12px;
+    }
+    
+    .strategy-info {
+        background: #23b8e3;
+        color: #fff;
+        padding: 10px !important;
+        margin-top: 8px !important;
+    }
+    
+    .strategy-padding {
+        padding-top: 30px;
+    }
+    
+    ul.left-margin {
+        margin-left: 25px !important;
+    }
+    
+    .mt20 {
+        margin-top: 20px !important;
+    }
+    /*Contact Details*/
+    
+    .contact-info .contact-icon {
+        width: 30px;
+        height: 30px;
+        display: block;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        position: relative;
+        top: 10px;
+    }
+    
+    .contact-info i.office-icon {
+        background: url(images/office-icon.png);
+    }
+    
+    .contact-info i.email-icon {
+        background: url(images/email-icon.png);
+    }
+    
+    .contact-info i.post-icon {
+        background: url(images/post-icon.png);
+    }
+    
+    .contact-info i.phone-icon {
+        background: url(images/phone-icon.png);
+    }
+    
+    .contact-info {
+        margin: 15px 0;
+    }
+    
+    .contact-info div span:first-child {
+        width: 14%;
+        color: #23b8e3;
+        font-weight: 600;
+    }
+    
+    .contact-info div span {
+        display: inline-block;
+        font-size: 13px;
+        font-family: LatoRegular;
+        margin-right: -22px;
+    }
+    
+    .arrow-lines li {
+        background: url(images/arrow-icon.png);
+        background-repeat: no-repeat;
+        padding-left: 18px !Important;
+        padding-top: 0 !important;
+        margin-top: 8px;
+        background-size: 2.5%;
+        background-position: 0px 3px;
+    }
+    
+    .arrow-lines li ul li {
+        background: none;
+        padding-left: 0 !important;
+    }
+    
+    .arrow-lines li ul li:before {
+        content: '';
+        background: #23b8e3;
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        margin-right: 11px;
+        vertical-align: middle;
+    }
+    
+    .small-heading {
+        color: #23b8e3;
+    }
+    
+    .about-you {
+        background: url(images/page-6-BG.png) !important;
+        background-size: cover !Important;
+    }
+    
+    .risk-profile-background {
+        background: url(images//page-9-BG.png) !important;
+        background-size: cover !Important;
+    }
+    
+    .track-plans-background {
+        background: url(images/page-12-BG.png) !important;
+        background-size: cover !Important;
+    }
+    
+    .correct-level-background {
+        background: url(images/page-second_1.png) !important;
+        background-size: cover !Important;
+    }
+    
+    .advice-background {
+        background: url(images/page-18.png) !important;
+        background-size: cover !Important;
+    }
+    
+    .cover-background {
+        background: url(images/last-page.png) !important;
+        background-size: cover !Important;
+    }
+    
+    .content-page.cover-background:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.4);
+        z-index: -1;
+    }
+</style>
 </head>
 
 <body>
@@ -1038,106 +1167,105 @@
           actively managing these portfolios for you. With advice that is in your best interest you will be able to
           reach your goal much quicker that is available to you in a public offer fund.</p>
           <h4>Does my advice have any disadvantages?</h4>
-          </div>
-        </div>
-        <div class="page">
-            <div class="content-page">
-              <p>In retirement planning there are some disadvantages and they are the cost of moving from one fund to
-              another and the tax consequences of selling assets that crystallise gains. In some cases managed funds
-              have already accounted for these transaction costs in the unit price. You may be out of the market whilst
-              one fund is being transferred to another and you may suffer some financial loss.</p>
-              <p>Another disadvantage in consolidating superannuation accounts is the risk of losing valuable insurance
-              cover and not being able to replace that cover. We adopt a partial roll over process to make sure all cover
-              is preserved whilst the new cover is confirmed and then we roll over the remainder.</p>
-              <p>Automated consolidation under general advice that banks and large institution organise disregards the
-              transfer of cover and you may suffer substantial loss of benefits if you try to consolidate without the
-              benefit of an adviser.</p>
-              <p>If you choose to have your insurance paid by your new superannuation fund you can reduce the end
-              benefit substantially by the cost of the cover and you may not reach your goal in the desired time frame.
-              It may be best to pay for your income protection cover from your own pocket rather than via your
-              superannuation fund.</p>
-              <h4>The consequences of replacing one product with another.</h4>
-              <p>All superannuation funds have small exit fees or transaction fees that are a result or members opening
-              and closing accounts. The other consequence of replacing one superannuation account with another is
-              the loss of underwriting free insurance cover.</p>
-              <p>In most cases insurance cover that has been in force for more than three years will not be subject to
-              rigorous non-disclosure examination to avoid the insurer paying a claim. If you are replacing an old
-              superannuation policy with a new style fund then you wear the risk of medical evidence being used to
-              avoid the payment of a claim if extenuating circumstances are in play.</p>
-              <p>What my advice does not deal with</p>
-              <p>Because you are requesting advice of a limited nature we cannot look at your overall situation and
-              address all your advice needs. This is aavailable to you but an additional fee will apply.</p>
-              <p>We have not dealt with your general insurance needs like house, contents and car insurance.</p>
-              <p>We have not dealt with your taxation issues</p>
-              <p>We have not dealt with your Estate Planning needs</p>
-              <p>We have not dealt with you Investment and property issues</p>
-              <p>We have not dealt with your lending issues</p>
-              <p>We have not dealt with your Cashflow management.</p>
-            </div>
-        </div>
-        <div class="page">
-            <div class="content-page">
-                <h2><p>Section Three:</p> WHAT ELSE YOU NEED<br> TO KNOW</h2>
-                <p class="small-heading">What are the fees for this advice?</p>
-                <p>I will charge you $550 (inclusive of GST) for this statement of advice</p>
-                <p>We will charge an investment management fee of 0.08% monthly of your investment amount to manage
-                and rebalance your investments.</p>
-                <p>We charge a fee of 20% of the insurance premium to manage the insurance claims and product selection.</p>
-                <p class="small-heading">Will we be paid any commissions?</p>
-                <p>We are a fee based financial advice business that charges you a fee for our services and investment
-                management. If we are nominated to service an old legacy product that includes the payment of a trail
-                commission then we will be entitled to receive that amount and we will rebate it to you on request.</p>
-                <p class="small-heading">What product fees do we receive?</p>
-                <p>We do not receive any monetary benefit from any product provider.</p>
-                <p>All the product fees are included in the attached product disclosure statement (PDS)</p>
-                <p>Other question that you might have.</p>
-                <p class="small-heading">Am I restricted to an approved product list?</p>
-                <p>Advisers under our licence are all restricted to advise a limited list of product that have undergone our
-                research and strict criteria. If the product is not on this list and it is in your best interest to recommend it
-                then we will provide special dispensation to arrange to deal in this product.</p>
-                <p class="small-heading">Is our business associated with any of the product providers?</p>
-                <p>No we are not. Our Company and the ASIC licence holder is an independent business and all shares are
-                privately held.</p>
-                <p class="small-heading">Do I guarantee the performance of the investments that I recommend?</p>
-                <p>No I do not. These investments are market related and I cannot guarantee their performance except that
-                are judged to be appropriate for you.</p>
-                <p>Can you change your mind.</p>
-                <p>Yes you can change your mind after placing the investments and get your money back after transaction
-                fees and market movements. With some managed funds and insurance products the manager of the
-                product provides a cooling off period of 14 days if you are not happy.</p>
-                <p>Our financial planning fees are not refundable.</p>
-                <p class="small-heading">Does my advice have a time limit?</p>
-                <p>Yes my advice is only valid for 30 days from the date of our letter. If you have not decided to invest within
-                that period of time and or your situation changes then we will charge a separate financial planning fee.</p>
-                <p class="small-heading">Is my personal information protected and private?</p>
-                <p>Yes it is and your information is backed up and stored off site in cases of fires.</p>
-            </div>
-        </div>
-        <div class="page">
-            <div class="content-page">
-                <h2><p>Authority to Proceed:</p>THE STEPS TO IMPLEMENT THIS<br> ADVICE.</h2>
-                <p>Before you sign this document to proceed with our advice I would like to make sure that:</p>
-                <ul class="arrow-lines">
-                <li>You have received our financial services guide</li>
-                <li>You have received an electronic version of all product disclosure documents and investment
-                summaries and research reports.</li>
-                <li>Discussed your superannuation preferences with us and assessed your insurance needs and goals
-                and objectives in a way that you understand</li>
-                <li>Discussed the risks of investing and understand how the sharemarket works</li>
-                <li>Discussed and understand how we charge</li>
-                <li>Read this advice document and are clear with its contents</li>
-                <li>Made sure all your personal information is accurate.</li>
-                <li>Asked any questions that you have.</li>
-                <p>By signing this appointment you agree to appoint AFSL 413567 as your financial adviser and that all
-                superannuation products and investment and insurance products are serviced by you and transferred
-                under this authority to you as my financial adviser.</p>
-                <p>Please implement these recommendations without any changes.</p>
-                <p><b>Signed</b></p>
-                <p>Rocky John:</p>
-            </div>
         </div>
     </div>
+    <div class="page">
+        <div class="content-page">
+          <p>In retirement planning there are some disadvantages and they are the cost of moving from one fund to
+          another and the tax consequences of selling assets that crystallise gains. In some cases managed funds
+          have already accounted for these transaction costs in the unit price. You may be out of the market whilst
+          one fund is being transferred to another and you may suffer some financial loss.</p>
+          <p>Another disadvantage in consolidating superannuation accounts is the risk of losing valuable insurance
+          cover and not being able to replace that cover. We adopt a partial roll over process to make sure all cover
+          is preserved whilst the new cover is confirmed and then we roll over the remainder.</p>
+          <p>Automated consolidation under general advice that banks and large institution organise disregards the
+          transfer of cover and you may suffer substantial loss of benefits if you try to consolidate without the
+          benefit of an adviser.</p>
+          <p>If you choose to have your insurance paid by your new superannuation fund you can reduce the end
+          benefit substantially by the cost of the cover and you may not reach your goal in the desired time frame.
+          It may be best to pay for your income protection cover from your own pocket rather than via your
+          superannuation fund.</p>
+          <h4>The consequences of replacing one product with another.</h4>
+          <p>All superannuation funds have small exit fees or transaction fees that are a result or members opening
+          and closing accounts. The other consequence of replacing one superannuation account with another is
+          the loss of underwriting free insurance cover.</p>
+          <p>In most cases insurance cover that has been in force for more than three years will not be subject to
+          rigorous non-disclosure examination to avoid the insurer paying a claim. If you are replacing an old
+          superannuation policy with a new style fund then you wear the risk of medical evidence being used to
+          avoid the payment of a claim if extenuating circumstances are in play.</p>
+          <p>What my advice does not deal with</p>
+          <p>Because you are requesting advice of a limited nature we cannot look at your overall situation and
+          address all your advice needs. This is aavailable to you but an additional fee will apply.</p>
+          <p>We have not dealt with your general insurance needs like house, contents and car insurance.</p>
+          <p>We have not dealt with your taxation issues</p>
+          <p>We have not dealt with your Estate Planning needs</p>
+          <p>We have not dealt with you Investment and property issues</p>
+          <p>We have not dealt with your lending issues</p>
+          <p>We have not dealt with your Cashflow management.</p>
+        </div>
     </div>
+    <div class="page">
+        <div class="content-page">
+            <h2><p>Section Three:</p> WHAT ELSE YOU NEED<br> TO KNOW</h2>
+            <p class="small-heading">What are the fees for this advice?</p>
+            <p>I will charge you $550 (inclusive of GST) for this statement of advice</p>
+            <p>We will charge an investment management fee of 0.08% monthly of your investment amount to manage
+            and rebalance your investments.</p>
+            <p>We charge a fee of 20% of the insurance premium to manage the insurance claims and product selection.</p>
+            <p class="small-heading">Will we be paid any commissions?</p>
+            <p>We are a fee based financial advice business that charges you a fee for our services and investment
+            management. If we are nominated to service an old legacy product that includes the payment of a trail
+            commission then we will be entitled to receive that amount and we will rebate it to you on request.</p>
+            <p class="small-heading">What product fees do we receive?</p>
+            <p>We do not receive any monetary benefit from any product provider.</p>
+            <p>All the product fees are included in the attached product disclosure statement (PDS)</p>
+            <p>Other question that you might have.</p>
+            <p class="small-heading">Am I restricted to an approved product list?</p>
+            <p>Advisers under our licence are all restricted to advise a limited list of product that have undergone our
+            research and strict criteria. If the product is not on this list and it is in your best interest to recommend it
+            then we will provide special dispensation to arrange to deal in this product.</p>
+            <p class="small-heading">Is our business associated with any of the product providers?</p>
+            <p>No we are not. Our Company and the ASIC licence holder is an independent business and all shares are
+            privately held.</p>
+            <p class="small-heading">Do I guarantee the performance of the investments that I recommend?</p>
+            <p>No I do not. These investments are market related and I cannot guarantee their performance except that
+            are judged to be appropriate for you.</p>
+            <p>Can you change your mind.</p>
+            <p>Yes you can change your mind after placing the investments and get your money back after transaction
+            fees and market movements. With some managed funds and insurance products the manager of the
+            product provides a cooling off period of 14 days if you are not happy.</p>
+            <p>Our financial planning fees are not refundable.</p>
+            <p class="small-heading">Does my advice have a time limit?</p>
+            <p>Yes my advice is only valid for 30 days from the date of our letter. If you have not decided to invest within
+            that period of time and or your situation changes then we will charge a separate financial planning fee.</p>
+            <p class="small-heading">Is my personal information protected and private?</p>
+            <p>Yes it is and your information is backed up and stored off site in cases of fires.</p>
+        </div>
+    </div>
+    <div class="page">
+        <div class="content-page">
+            <h2><p>Authority to Proceed:</p>THE STEPS TO IMPLEMENT THIS<br> ADVICE.</h2>
+            <p>Before you sign this document to proceed with our advice I would like to make sure that:</p>
+            <ul class="arrow-lines">
+            <li>You have received our financial services guide</li>
+            <li>You have received an electronic version of all product disclosure documents and investment
+            summaries and research reports.</li>
+            <li>Discussed your superannuation preferences with us and assessed your insurance needs and goals
+            and objectives in a way that you understand</li>
+            <li>Discussed the risks of investing and understand how the sharemarket works</li>
+            <li>Discussed and understand how we charge</li>
+            <li>Read this advice document and are clear with its contents</li>
+            <li>Made sure all your personal information is accurate.</li>
+            <li>Asked any questions that you have.</li>
+            <p>By signing this appointment you agree to appoint AFSL 413567 as your financial adviser and that all
+            superannuation products and investment and insurance products are serviced by you and transferred
+            under this authority to you as my financial adviser.</p>
+            <p>Please implement these recommendations without any changes.</p>
+            <p><b>Signed</b></p>
+            <p>Rocky John:</p>
+        </div>
+    </div>
+</div>
     <button id="convert">Convert</button>
     <div id="download-area"></div>
     <script>
