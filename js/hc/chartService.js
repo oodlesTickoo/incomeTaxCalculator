@@ -1,6 +1,6 @@
 app.service('ChartServiceHc',function(){
   this.createChart = function(taxOnIncome,netIncomePerAnnum){
-    
+
     Highcharts.setOptions({lang: {
             thousandsSep: ','
         }});
@@ -8,11 +8,20 @@ app.service('ChartServiceHc',function(){
     // Create the chart
     $('#container').highcharts({
         chart: {
-            type: 'column'
+            type: 'column',
+            options3d: {
+              enabled: true,
+                 alpha: 7,
+                 beta: 18,
+                 depth: 47,
+                 viewDistance: 25
+   }
         },
         title: {
             text: 'Income Tax Calculator'
         },
+        colors: ['#0d2f47', '#989898'],
+
         exporting:{
             enabled:false
         },
@@ -20,7 +29,8 @@ app.service('ChartServiceHc',function(){
             type: 'category',
             labels:{
                 autoRotation : false,
-            }
+            },
+            gridLineColor: 'transparent',
         },
         yAxis: {
             title: {
